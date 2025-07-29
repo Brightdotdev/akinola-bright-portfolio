@@ -1,5 +1,7 @@
 {
   "name": "my-portfolio",
+  "homepage": "https://github.io/Brightdotdev/akinola-bright-portfolio",
+
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +9,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
