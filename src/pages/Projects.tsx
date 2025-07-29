@@ -143,7 +143,7 @@ export default function Projects() {
           >
             {/* Contact Item - LinkedIn */}
             <motion.a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/brightdotdev/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -155,7 +155,7 @@ export default function Projects() {
 
             {/* Contact Item - GitHub */}
             <motion.a
-              href="https://github.com/yourusername"
+              href="https://github.com/Brightdotdev"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -167,7 +167,7 @@ export default function Projects() {
 
             {/* Contact Item - Email */}
             <motion.a
-              href="mailto:youremail@example.com"
+              href="mailto:iamtherealbright@gmail.com"
               whileHover={{ scale: 1.1 }}
               className="flex items-center gap-2 bg-card px-4 py-2 rounded-md shadow hover:shadow-elevated transition"
             >

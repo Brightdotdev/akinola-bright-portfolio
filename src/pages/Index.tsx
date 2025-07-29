@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Navigation } from '../components/Navigation';
 import { Hero } from '../components/Hero';
 import { Timeline } from '../components/Timeline';
@@ -8,9 +8,11 @@ import codeWorkspace from '../assets/code-workspace.jpg';
 import atlasian from '../assets/atlassian.png';
 import vehicleTrackingApplication from '../assets/vehicleTrackingApplication.png';
 import flutterWaveClone from '../assets/flutterWaveClone.png';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [showContacts, setShowContacts] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('darkMode');
@@ -169,9 +171,67 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-muted-foreground mb-4">
-              Built React and sweat Thank you for your time 🧍‍♂️
-            </p>
+      
+      
+
+
+      <button 
+            
+        onClick={() => setShowContacts(!showContacts)}
+            className="bg-gradient-primary text-white px-6 py-3 rounded-lg hover:shadow-glow transition-all duration-normal">
+              Get In Touch
+            </button>
+
+              {/* AnimatePresence handles enter/exit animations */}
+      <AnimatePresence>
+        {showContacts && (
+          <motion.div
+            key="contacts"
+            initial={{ opacity: 0, y: 20 }}         // Start faded and pushed down
+            animate={{ opacity: 1, y: 0 }}          // Animate in
+            exit={{ opacity: 0, y: 20 }}            // Animate out
+            transition={{ duration: 0.5 }}
+            className="mt-8 flex justify-center gap-6"
+          >
+            {/* Contact Item - LinkedIn */}
+            <motion.a
+              href="https://www.linkedin.com/in/brightdotdev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="flex items-center gap-2 bg-card px-4 py-2 rounded-md shadow hover:shadow-elevated transition"
+            >
+              <Linkedin className="text-primary" size={20} />
+              <span className="text-sm font-medium text-muted-foreground">LinkedIn</span>
+            </motion.a>
+
+            {/* Contact Item - GitHub */}
+            <motion.a
+              href="https://github.com/Brightdotdev"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="flex items-center gap-2 bg-card px-4 py-2 rounded-md shadow hover:shadow-elevated transition"
+            >
+              <Github className="text-primary" size={20} />
+              <span className="text-sm font-medium text-muted-foreground">GitHub</span>
+            </motion.a>
+
+            {/* Contact Item - Email */}
+            <motion.a
+              href="mailto:iamtherealbright@gmail.com"
+              whileHover={{ scale: 1.1 }}
+              className="flex items-center gap-2 bg-card px-4 py-2 rounded-md shadow hover:shadow-elevated transition"
+            >
+              <Mail className="text-primary" size={20} />
+              <span className="text-sm font-medium text-muted-foreground">Email</span>
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+
+
             <p className="text-sm text-subtle">
               © 2025 Bright Akinola's Portfolio V2 
             </p>
