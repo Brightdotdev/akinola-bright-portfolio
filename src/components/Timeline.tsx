@@ -134,6 +134,10 @@ export function Timeline() {
         })}
       </div>
 
+
+
+
+
       {/* Progress indicator */}
       <motion.div
         initial={{ scaleY: 0 }}
