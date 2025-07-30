@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
+import { Navigation } from '../components/Navigation';
 import codeWorkspace from '../assets/code-workspace.jpg';
 import atlasian from '../assets/atlassian.png';
 import vehicleTrackingApplication from '../assets/vehicleTrackingApplication.png';
 import flutterWaveClone from '../assets/flutterWaveClone.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 
@@ -79,10 +80,31 @@ const projects = [
 ];
 
 export default function Projects() {
-  
+  const [darkMode, setDarkMode] = useState(false);
   const [showContacts, setShowContacts] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('darkMode');
+    if (saved) {
+      setDarkMode(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen bg-background">
+      <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <div className="pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -179,6 +201,7 @@ export default function Projects() {
       </AnimatePresence>
           </div>
         </motion.div>
+      </div>
       </div>
     </div>
   );

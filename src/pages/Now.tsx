@@ -2,6 +2,8 @@
 import { motion } from 'framer-motion';
 import { Calendar, BookOpen, Code, Target, Music, Coffee, BrainCircuit, LayoutDashboard } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
+import { Navigation } from '../components/Navigation';
+import { useState, useEffect } from 'react';
 
 // Main focus categories
 const currentFocus = [
@@ -55,8 +57,30 @@ const recentTechStack = [
 ];
 
 export default function Now() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('darkMode');
+    if (saved) {
+      setDarkMode(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen bg-background">
+      <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <div className="pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-6">
 
         {/* Animated header block */}
@@ -202,6 +226,7 @@ export default function Now() {
             </div>
           </div>
         </motion.div>
+      </div>
       </div>
     </div>
   );

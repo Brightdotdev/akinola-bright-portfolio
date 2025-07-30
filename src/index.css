@@ -1,183 +1,275 @@
+/* styles.css (Tailwind v4 version) */
+
+/* Step 4: Import Tailwind v4, replacing @tailwind directives */
 @import "tailwindcss";
 
-@theme {
-  --color-border: 210 20% 92%;
-  --color-input: 210 20% 96%;
-  --color-ring: 217 91% 60%;
-  --color-background: 0 0% 99%;
-  --color-foreground: 210 11% 15%;
-  --color-primary: 217 91% 60%;
-  --color-primary-foreground: 0 0% 100%;
-  --color-primary-subtle: 217 91% 95%;
-  --color-secondary: 210 20% 96%;
-  --color-secondary-foreground: 210 11% 15%;
-  --color-destructive: 0 84% 60%;
-  --color-destructive-foreground: 0 0% 100%;
-  --color-muted: 210 20% 96%;
-  --color-muted-foreground: 210 9% 45%;
-  --color-accent: 142 76% 36%;
-  --color-accent-foreground: 0 0% 100%;
-  --color-accent-subtle: 142 76% 95%;
-  --color-popover: 0 0% 100%;
-  --color-popover-foreground: 210 11% 15%;
-  --color-card: 0 0% 100%;
-  --color-card-foreground: 210 11% 15%;
-  --color-card-hover: 210 40% 98%;
-  --color-warning: 45 93% 47%;
-  --color-warning-foreground: 0 0% 100%;
-  --color-success: 142 76% 36%;
-  --color-success-foreground: 0 0% 100%;
-  --color-subtle: 210 9% 65%;
-  
+/*
+  Step 5: Declare theme variables using @theme inline
+  Wrap existing HSL values in hsl(...) and expose them as CSS vars
+*/
+@theme inline {
+  /* Base colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Cards */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-hover: var(--card-hover);
+
+  /* Interactive/Popover */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Primary */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-subtle: var(--primary-subtle);
+
+  /* Secondary */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Text hierarchy */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle: var(--subtle);
+
+  /* Accent */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-subtle: var(--accent-subtle);
+
+  /* States: warning, success, destructive */
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* System tokens */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radii */
   --radius: 0.75rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
-  
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--color-primary)), hsl(217 91% 70%));
-  --gradient-accent: linear-gradient(135deg, hsl(var(--color-accent)), hsl(142 76% 46%));
-  --gradient-subtle: linear-gradient(135deg, hsl(var(--color-muted)), hsl(210 20% 98%));
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 hsl(210 20% 0% / 0.05);
-  --shadow-md: 0 4px 6px -1px hsl(210 20% 0% / 0.1), 0 2px 4px -1px hsl(210 20% 0% / 0.06);
-  --shadow-lg: 0 10px 15px -3px hsl(210 20% 0% / 0.1), 0 4px 6px -2px hsl(210 20% 0% / 0.05);
-  --shadow-glow: 0 0 0 1px hsl(var(--color-primary) / 0.1), 0 0 20px hsl(var(--color-primary) / 0.15);
-  
-  /* Animations */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Shadows and gradient tokens */
+  /* Will use CSS var(...) and tailwind classes referencing these custom properties */
 }
 
-@theme (prefers-color-scheme: dark) {
-  --color-border: 220 13% 18%;
-  --color-input: 220 13% 15%;
-  --color-ring: 217 91% 65%;
-  --color-background: 220 13% 9%;
-  --color-foreground: 210 20% 92%;
-  --color-primary: 217 91% 65%;
-  --color-primary-foreground: 220 13% 9%;
-  --color-primary-subtle: 217 91% 15%;
-  --color-secondary: 220 13% 15%;
-  --color-secondary-foreground: 210 20% 92%;
-  --color-destructive: 0 84% 65%;
-  --color-destructive-foreground: 220 13% 9%;
-  --color-muted: 220 13% 15%;
-  --color-muted-foreground: 210 9% 55%;
-  --color-accent: 142 76% 46%;
-  --color-accent-foreground: 220 13% 9%;
-  --color-accent-subtle: 142 76% 15%;
-  --color-popover: 220 13% 11%;
-  --color-popover-foreground: 210 20% 92%;
-  --color-card: 220 13% 11%;
-  --color-card-foreground: 210 20% 92%;
-  --color-card-hover: 220 13% 13%;
-  --color-warning: 45 93% 52%;
-  --color-warning-foreground: 220 13% 9%;
-  --color-success: 142 76% 46%;
-  --color-success-foreground: 220 13% 9%;
-  --color-subtle: 210 9% 40%;
-  
-  /* Dark gradients */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--color-primary)), hsl(217 91% 75%));
-  --gradient-accent: linear-gradient(135deg, hsl(var(--color-accent)), hsl(142 76% 56%));
-  --gradient-subtle: linear-gradient(135deg, hsl(var(--color-muted)), hsl(220 13% 18%));
-  
-  /* Dark shadows */
-  --shadow-glow: 0 0 0 1px hsl(var(--color-primary) / 0.2), 0 0 25px hsl(var(--color-primary) / 0.25);
+/* Recreate original :root & .dark declarations */
+:root {
+   /* Base Colors - Clean and minimal */
+   --background: hsl(0 0% 99%);
+   --foreground: hsl(210 11% 15%);
+ 
+   /* Card System - Subtle elevation */
+   --card: hsl(0 0% 100%);
+   --card-foreground: hsl(210 11% 15%);
+   --card-hover: hsl(210 40% 98%);
+ 
+   /* Interactive Elements */
+   --popover: hsl(0 0% 100%);
+   --popover-foreground: hsl(210 11% 15%);
+ 
+   /* Primary Brand - Developer Blue */
+   --primary: hsl(217 91% 60%);
+   --primary-foreground: hsl(0 0% 100%);
+   --primary-subtle: hsl(217 91% 95%);
+ 
+   /* Secondary - Warm Gray */
+   --secondary: hsl(210 20% 96%);
+   --secondary-foreground: hsl(210 11% 15%);
+ 
+   /* Text Hierarchy */
+   --muted: hsl(210 20% 96%);
+   --muted-foreground: hsl(210 9% 45%);
+   --subtle: hsl(210 9% 65%);
+ 
+   /* Accent Colors - For highlights and badges */
+   --accent: hsl(142 76% 36%);
+   --accent-foreground: hsl(0 0% 100%);
+   --accent-subtle: hsl(142 76% 95%);
+ 
+   /* Warning/Success States */
+   --warning: hsl(45 93% 47%);
+   --warning-foreground: hsl(0 0% 100%);
+   --success: hsl(142 76% 36%);
+   --success-foreground: hsl(0 0% 100%);
+ 
+   /* System Colors */
+   --destructive: hsl(0 84% 60%);
+   --destructive-foreground: hsl(0 0% 100%);
+ 
+   --border: hsl(210 20% 92%);
+   --input: hsl(210 20% 96%);
+   --ring: hsl(217 91% 60%);
+ 
+   /* Design Tokens */
+   --radius: 0.75rem;
+   --radius-lg: 1rem;
+   --radius-xl: 1.5rem;
+ 
+   /* Gradients */
+   --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
+   --gradient-accent: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+   --gradient-subtle: linear-gradient(135deg, hsl(210 20% 96%), hsl(210 20% 98%));
+ 
+   /* Shadows */
+   --shadow-sm: 0 1px 2px 0 hsl(210 20% 0% / 0.05);
+   --shadow-md: 0 4px 6px -1px hsl(210 20% 0% / 0.1), 0 2px 4px -1px hsl(210 20% 0% / 0.06);
+   --shadow-lg: 0 10px 15px -3px hsl(210 20% 0% / 0.1), 0 4px 6px -2px hsl(210 20% 0% / 0.05);
+   --shadow-glow: 0 0 0 1px hsl(217 91% 60% / 0.1), 0 0 20px hsl(217 91% 60% / 0.15);
+ 
+   /* Animations */
+   --duration-fast: 150ms;
+   --duration-normal: 300ms;
+   --duration-slow: 500ms;
+   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+.dark {
+  /* Modern dark theme - softer, more elegant */
+  --background: hsl(240 10% 3.9%);
+  --foreground: hsl(0 0% 98%);
 
+  --card: hsl(240 10% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --card-hover: hsl(240 5% 6%);
 
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
 
+  /* Brighter, more vibrant primary */
+  --primary: hsl(217 91% 60%);
+  --primary-foreground: hsl(240 10% 3.9%);
+  --primary-subtle: hsl(217 91% 20%);
 
+  --secondary: hsl(240 5% 6%);
+  --secondary-foreground: hsl(0 0% 98%);
+
+  --muted: hsl(240 5% 6%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --subtle: hsl(240 5% 45%);
+
+  /* Vibrant accent */
+  --accent: hsl(142 76% 36%);
+  --accent-foreground: hsl(240 10% 3.9%);
+  --accent-subtle: hsl(142 76% 20%);
+
+  --warning: hsl(45 93% 47%);
+  --warning-foreground: hsl(240 10% 3.9%);
+  --success: hsl(142 76% 36%);
+  --success-foreground: hsl(240 10% 3.9%);
+
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 98%);
+
+  --border: hsl(240 5% 8%);
+  --input: hsl(240 5% 6%);
+  --ring: hsl(217 91% 60%);
+
+  /* Enhanced dark gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
+  --gradient-accent: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+  --gradient-subtle: linear-gradient(135deg, hsl(240 5% 6%), hsl(240 5% 8%));
+
+  /* Improved dark shadow glow */
+  --shadow-glow: 0 0 0 1px hsl(217 91% 60% / 0.15), 0 0 30px hsl(217 91% 60% / 0.2);
+}
+
+/* Now include your existing component definitions and utilities */
 @layer base {
   * {
-    border-color: hsl(var(--color-border));
+    @apply border-[color-border];
   }
 
   body {
-    background-color: hsl(var(--color-background));
-    color: hsl(var(--color-foreground));
+    @apply bg-[color-background] text-[color-foreground] font-sans antialiased;
     font-feature-settings: "cv11", "ss01";
     font-variation-settings: "opsz" 32;
   }
 
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar stays */
   ::-webkit-scrollbar {
     width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: hsl(var(--color-muted));
+    @apply bg-[color-muted];
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--color-subtle));
-    border-radius: 9999px;
+    @apply bg-[color-subtle] rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--color-muted-foreground));
+    @apply bg-[color-muted-foreground];
   }
 }
 
 @layer components {
-  /* Glass effect utility */
   .glass {
-    background-color: rgb(255 255 255 / 0.7);
-    backdrop-filter: blur(24px);
-    border: 1px solid rgb(255 255 255 / 0.2);
+    @apply bg-white/70 backdrop-blur-xl border border-white/20;
   }
-
   .dark .glass {
-    background-color: hsl(var(--color-card) / 0.7);
-    backdrop-filter: blur(24px);
-    border: 1px solid rgb(255 255 255 / 0.1);
+    @apply bg-[color-card]/70 backdrop-blur-xl border border-white/10;
   }
 
-  /* Glow effects */
   .glow {
     box-shadow: var(--shadow-glow);
   }
 
-  /* Gradient text */
   .gradient-text {
-    background: var(--gradient-primary);
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
   }
 
-  /* Interactive card */
-  .card-interactive {
-    transition: all 300ms;
-  }
-  
-  .card-interactive:hover {
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
-    transform: translateY(-4px);
-    background-color: hsl(var(--color-card-hover));
+  /* Hover gradient text effect */
+  .group-hover\:gradient-text:hover {
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 
-  /* Pulse animation for loading states */
+  .card-interactive {
+    @apply transition-all duration-150 hover:shadow-lg hover:-translate-y-1 hover:bg-[color-card-hover];
+  }
+
   .pulse-subtle {
-    animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse-subtle 2s var(--ease-normal) infinite;
   }
 
   @keyframes pulse-subtle {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Gradient background utilities */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .bg-gradient-subtle {
+    background: var(--gradient-subtle);
   }
 }

@@ -33,7 +33,7 @@ export function Navigation({ darkMode, toggleDarkMode }: NavigationProps) {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-normal ${
-        isScrolled ? 'glass shadow-primary' : 'bg-transparent'
+        isScrolled ? 'glass bg-card' : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
@@ -45,7 +45,7 @@ export function Navigation({ darkMode, toggleDarkMode }: NavigationProps) {
             transition={{ delay: 0.2 }}
           >
             <NavLink to="/" className="font-mono font-bold text-lg gradient-text">
-              dev.portfolio
+          Brightdotdev
             </NavLink>
           </motion.div>
 
