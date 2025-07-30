@@ -1,79 +1,82 @@
-# Deploying to Cloudflare Pages
+# Deploying to GitHub Pages
 
-This guide will help you deploy your portfolio to Cloudflare Pages.
+This guide will help you deploy your React Vite portfolio to GitHub Pages.
 
 ## Prerequisites
 
-1. **Cloudflare Account**: Sign up at [cloudflare.com](https://cloudflare.com)
-2. **Wrangler CLI**: Install the Cloudflare CLI tool
+1. **GitHub Account**: Make sure your code is pushed to GitHub
+2. **Repository**: Your project should be in a GitHub repository
 
-## Installation
+## Configuration
 
-### Install Wrangler CLI
-```bash
-npm install -g wrangler
-```
+Your project is already configured for GitHub Pages deployment with:
 
-### Login to Cloudflare
-```bash
-wrangler login
-```
+- ✅ **Base path**: Set to `/akinola-bright-portfolio/` in `vite.config.ts`
+- ✅ **Homepage**: Set in `package.json`
+- ✅ **SPA routing**: Configured with 404.html and index.html scripts
+- ✅ **Build script**: `npm run build`
+- ✅ **Deploy script**: `gh-pages -d dist`
 
 ## Deployment Steps
 
-### Method 1: Using Wrangler CLI (Recommended)
+### Method 1: Using npm scripts (Recommended)
+
+1. **Build and deploy**:
+   ```bash
+   npm run deploy
+   ```
+
+   This command will:
+   - Build your project (`npm run build`)
+   - Deploy to GitHub Pages (`gh-pages -d dist`)
+
+### Method 2: Manual deployment
 
 1. **Build your project**:
    ```bash
    npm run build
    ```
 
-2. **Deploy to Cloudflare Pages**:
+2. **Deploy to GitHub Pages**:
    ```bash
-   npm run deploy
+   npx gh-pages -d dist
    ```
 
-### Method 2: Using Cloudflare Dashboard
+## After Deployment
 
-1. **Push your code to GitHub**:
-   ```bash
-   git add .
-   git commit -m "Ready for deployment"
-   git push origin main
-   ```
-
-2. **Connect to Cloudflare Pages**:
-   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
+1. **Wait for deployment**: GitHub Pages takes a few minutes to deploy
+2. **Check your site**: Visit `https://Brightdotdev.github.io/akinola-bright-portfolio/`
+3. **Enable GitHub Pages** (if not already enabled):
+   - Go to your repository settings
    - Navigate to "Pages"
-   - Click "Create a project"
-   - Choose "Connect to Git"
-   - Select your repository
-   - Configure build settings:
-     - **Build command**: `npm run build`
-     - **Build output directory**: `dist`
-     - **Root directory**: `/` (leave empty)
+   - Select "Deploy from a branch"
+   - Choose "gh-pages" branch
+   - Save
 
-## Environment Variables (Optional)
+## How SPA Routing Works
 
-If you need environment variables, add them in the Cloudflare Pages dashboard:
-- Go to your project settings
-- Navigate to "Environment variables"
-- Add any required variables
+Your React Router routes will work correctly because:
 
-## Custom Domain (Optional)
+1. **404.html**: Redirects all routes to index.html with query parameters
+2. **index.html script**: Converts query parameters back to proper URLs
+3. **React Router**: Handles the routing on the client side
 
-1. In your Cloudflare Pages project settings
-2. Go to "Custom domains"
-3. Add your domain and follow the DNS configuration
+## Available Routes
+
+- **Home**: `https://Brightdotdev.github.io/akinola-bright-portfolio/`
+- **Projects**: `https://Brightdotdev.github.io/akinola-bright-portfolio/projects`
+- **Now**: `https://Brightdotdev.github.io/akinola-bright-portfolio/now`
 
 ## Troubleshooting
 
 ### Common Issues:
 
-1. **Build fails**: Check your build logs in the Cloudflare dashboard
-2. **Routing issues**: Ensure `public/_redirects` file is present
-3. **404 errors**: Verify the build output directory is `dist`
+1. **404 errors on refresh**: Make sure 404.html is in the `public` folder
+2. **Build fails**: Check for TypeScript errors with `npm run build`
+3. **Assets not loading**: Verify the base path in `vite.config.ts`
+4. **Deployment not showing**: Wait 5-10 minutes for GitHub Pages to update
 
 ### Support:
-- [Cloudflare Pages Documentation](https://developers.cloudflare.com/pages/)
-- [Wrangler Documentation](https://developers.cloudflare.com/workers/wrangler/) 
+- [GitHub Pages Documentation](https://pages.github.com/)
+- [gh-pages package](https://github.com/tschaub/gh-pages)
+- [SPA for GitHub Pages](https://github.com/rafgraph/spa-github-pages) 
