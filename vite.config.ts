@@ -1,13 +1,8 @@
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-  base: '/akinola-bright-portfolio/',
-  build: {
-    outDir: 'dist',
-    sourcemap: true
-  }
-})
+  plugins: [react()],
+  base: '/'
+});
